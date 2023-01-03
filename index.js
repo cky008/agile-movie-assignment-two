@@ -78,6 +78,7 @@ const swaggerOpt = {
 const swaggerSpec = swaggerJsDoc(swaggerOpt);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.listen(port, () => {
+let server = app.listen(port, () => {
   console.info(`Server running at ${port}`);
 });
+module.exports = server
