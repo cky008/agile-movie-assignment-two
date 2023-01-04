@@ -58,8 +58,6 @@ deploy_staging:
 
 deploy_prod_manual:
   image: ruby:latest
-  only:
-    - develop
   stage: production
   before_script:
     - apt-get update -qy
