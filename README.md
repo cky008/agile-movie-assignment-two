@@ -223,8 +223,8 @@ All files                 |   84.73 |    77.25 |   84.43 |   85.05 |
 ## Independent Learning (if relevant)
 
 ### Code coverage report and Coveralls web service:    
-+ [![Coverage Status](https://coveralls.io/repos/gitlab/kaiyuchen1/agile-movie-assignment-two/badge.svg?branch=develop)](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=develop)  
-+ [https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two)  
++ [![Coverage Status](https://coveralls.io/repos/gitlab/kaiyuchen1/agile-movie-assignment-two/badge.svg?branch=main)](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=main) 
++ [https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=main](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=main)  
 
 ### Swagger Web APIs Document:  
 + [https://agile-ca2-cky-production.herokuapp.com/api-docs/](https://agile-ca2-cky-production.herokuapp.com/api-docs/)  
@@ -234,7 +234,7 @@ All files                 |   84.73 |    77.25 |   84.43 |   85.05 |
 + Github: [https://github.com/cky008/agile-movie-assignment-two](https://github.com/cky008/agile-movie-assignment-two)  
 + HEROKU Staging App: [https://agile-ca2-cky-staging.herokuapp.com/](https://agile-ca2-cky-staging.herokuapp.com/)  
 + HEROKU Production App: [https://agile-ca2-cky-production.herokuapp.com/](https://agile-ca2-cky-production.herokuapp.com/)  
-+ Coverall: [https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=develo](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=develo)  
++ Coverall: [https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=main](https://coveralls.io/gitlab/kaiyuchen1/agile-movie-assignment-two?branch=main)  
 + Swagger API document: [https://agile-ca2-cky-production.herokuapp.com/api-docs/](https://agile-ca2-cky-production.herokuapp.com/api-docs/)  
 
 ### Video Demo of movies-api:
