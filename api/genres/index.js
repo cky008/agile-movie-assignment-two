@@ -30,9 +30,9 @@ router.get('/', asyncHandler(async (req, res) => {
  *      - api_key: [TMDBAPIKEY]
  * 
  */
-router.get('/tmdb', async (req, res) => {
+router.get('/tmdb', asyncHandler(async (req, res) => {
     const genres = await getGenres();
     res.status(200).json(genres);
-});
+}));
 
 export default router;
