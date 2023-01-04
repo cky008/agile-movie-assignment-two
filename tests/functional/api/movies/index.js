@@ -223,6 +223,7 @@ describe("Movies endpoint", () => {
         return request(api)
           .get("/api/movies/tmdb/movie/1")
           .set("Accept", "application/json")
+          .expect("Content-Type", "text/html; charset=utf-8")
           .expect(500)
       });
     });
@@ -258,6 +259,7 @@ describe("Movies endpoint", () => {
         return request(api)
           .get("/api/movies/tmdb/movie/1/images")
           .set("Accept", "application/json")
+          .expect("Content-Type", "text/html; charset=utf-8")
           .expect(500)
       });
     });
@@ -293,6 +295,7 @@ describe("Movies endpoint", () => {
         return request(api)
           .get("/api/movies/tmdb/movie/1/reviews")
           .set("Accept", "application/json")
+          .expect("Content-Type", "text/html; charset=utf-8")
           .expect(500)
       });
     });
@@ -327,6 +330,7 @@ describe("Movies endpoint", () => {
         return request(api)
           .get("/api/movies/tmdb/movie/1/movie_credits")
           .set("Accept", "application/json")
+          .expect("Content-Type", "text/html; charset=utf-8")
           .expect(500)
       });
     });
