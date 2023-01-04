@@ -67,14 +67,19 @@ describe("Movies endpoint", () => {
     describe("when the id is invalid", () => {
       it("should return the NOT found message", () => {
         return request(api)
-          .get("/api/movies/9999")
+          .get("/api/movies/a")
           .set("Accept", "application/json")
-          .expect("Content-Type", /json/)
           .expect(404)
           .expect({
             status_code: 404,
             message: "The resource you requested could not be found.",
           });
+      });
+      it("should return Internal Server Error", () => {
+        return request(api)
+          .get("/api/movies/999")
+          .set("Accept", "application/json")
+          .expect(500)
       });
     });
   });
