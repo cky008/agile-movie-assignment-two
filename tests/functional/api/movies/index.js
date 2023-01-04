@@ -57,6 +57,7 @@ describe("Movies endpoint", () => {
         return request(api)
           .get(`/api/movies/${movies[0].id}`)
           .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
           .expect(200)
           .then((res) => {
             expect(res.body).to.have.property("title", movies[0].title);
