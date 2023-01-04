@@ -7,6 +7,7 @@ import movies from "../../../../seedData/movies";
 
 const expect = chai.expect;
 let db;
+let page;
 
 describe("Movies endpoint", () => {
   before(() => {
@@ -83,4 +84,252 @@ describe("Movies endpoint", () => {
       });
     });
   });
+
+  //my api test
+  describe("GET /api/movies/tmdb/discover/page:page", () => {
+    describe("when the page is valid", () => {
+        before(() => {
+          page = 1;
+        });
+        it("should return the matching movies form tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/discover/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("page", page);
+            expect(res.body.results).to.be.a("array");
+            expect(res.body.results.length).to.equal(20);
+          });
+      });
+    });
+    describe("when the page is invalid", () => {
+        before(() => {
+          page = 0;
+        });
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/discover/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/upcoming/page:page", () => {
+    describe("when the page is valid", () => {
+        before(() => {
+          page = 1;
+        });
+        it("should return the matching movies form tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/upcoming/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("page", page);
+            expect(res.body.results).to.be.a("array");
+            expect(res.body.results.length).to.equal(20);
+          });
+      });
+    });
+    describe("when the page is invalid", () => {
+        before(() => {
+          page = 0;
+        });
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/upcoming/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/top_rated/page:page", () => {
+    describe("when the page is valid", () => {
+        before(() => {
+          page = 1;
+        });
+        it("should return the matching movies form tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/top_rated/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("page", page);
+            expect(res.body.results).to.be.a("array");
+            expect(res.body.results.length).to.equal(20);
+          });
+      });
+    });
+    describe("when the page is invalid", () => {
+        before(() => {
+          page = 0;
+        });
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/top_rated/page${page}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/movie/:id", () => {
+    describe("when the id is valid", () => {
+      it("should return the matching movie details from tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/movie/${movies[0].id}`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("id", movies[0].id);
+            expect(res.body).to.have.property("title", movies[0].title);
+          });
+      });
+    });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/a")
+          .set("Accept", "application/json")
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+        });
+      it("should return Internal Server Error", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/1")
+          .set("Accept", "application/json")
+          .expect(500)
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/movie/:id/images", () => {
+    describe("when the id is valid", () => {
+      it("should return the matching movie images from tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/movie/${movies[0].id}/images`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("id", movies[0].id);
+            expect(res.body).to.have.property("backdrops");
+            expect(res.body).to.have.property("posters");
+          });
+      });
+    });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/a/images")
+          .set("Accept", "application/json")
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+        });
+      it("should return Internal Server Error", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/1/images")
+          .set("Accept", "application/json")
+          .expect(500)
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/movie/:id/reviews", () => {
+    describe("when the id is valid", () => {
+      it("should return the matching movie reviews from tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/movie/${movies[0].id}/reviews`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("id", movies[0].id);
+            expect(res.body.results).to.be.a("array");
+            expect(res.body.page).to.be.a("number");
+          });
+      });
+    });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/a/reviews")
+          .set("Accept", "application/json")
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+        });
+      it("should return Internal Server Error", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/1/reviews")
+          .set("Accept", "application/json")
+          .expect(500)
+      });
+    });
+  });
+
+  describe("GET /api/movies/tmdb/movie/:id/movie_credits", () => {
+    describe("when the id is valid", () => {
+      it("should return the matching movie credits from tmdb and status code 200", () => {
+        return request(api)
+          .get(`/api/movies/tmdb/movie/${movies[0].id}/movie_credits`)
+          .set("Accept", "application/json")
+          .expect("Content-Type", /json/)
+          .expect(200)
+          .then((res) => {
+            expect(res.body).to.have.property("id", movies[0].id);
+            expect(res.body.cast).to.be.a("array");
+          });
+      });
+    });
+    describe("when the id is invalid", () => {
+      it("should return the NOT found message", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/a/movie_credits")
+          .set("Accept", "application/json")
+          .expect(404)
+          .expect({
+            status_code: 404,
+            message: "The resource you requested could not be found.",
+          });
+        });
+      it("should return Internal Server Error", () => {
+        return request(api)
+          .get("/api/movies/tmdb/movie/1/movie_credits")
+          .set("Accept", "application/json")
+          .expect(500)
+      });
+    });
+  });
+
 });
