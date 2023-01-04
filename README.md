@@ -48,124 +48,128 @@ All need Authentication.
 ~~~
   Users endpoint
     GET /api/users 
-database connected to movies on ac-b8zbtwm-shard-00-00.nmgcwjf.mongodb.net
-      ✓ should return the 2 users and a status 200 (106ms)
+database connected to movies on ac-b8zbtwm-shard-00-01.nmgcwjf.mongodb.net
+      ✓ should return the 2 users and a status 200
     POST /api/users 
       For a register action
         when the payload is correct
-          ✓ should return a 201 status and the confirmation message (387ms)
+          ✓ should return a 201 status and the confirmation message (261ms)
       For an authenticate action
         when the payload is correct
-          ✓ should return a 200 status and a generated token (390ms)
+          ✓ should return a 200 status and a generated token (252ms)
     POST /api/users/:username/favourites
       when the username is valid
         when the movie is not in favourites
-          ✓ should return added message and status code 201 (272ms)
+          ✓ should return added message and status code 201 (166ms)
         when the movie is in favourites
-          ✓ return error message and status code 403 (166ms)
+          ✓ return error message and status code 403 (118ms)
       when the username is invalid
-        ✓ return error message and status code 500 (104ms)
+        ✓ return error message and status code 500
     GET /api/users/:username/favourites
-      ✓ should return user's favourite movies list and status code 200 (106ms)
+      ✓ should return user's favourite movies list and status code 200
     POST /api/users/:username/movie/:id/favourites
       when the username is valid
         when the movie is in favourites
-          ✓ should return deleted movie message and status code 201 (216ms)
+          ✓ should return deleted movie message and status code 201 (64ms)
         when the movie is not in favourites
-          ✓ return error message and status cdoe 404 (114ms)
+          ✓ return error message and status cdoe 404
       when the username is invalid
         ✓ return error message and status code 404
+
   Movies endpoint
     GET /api/movies 
-      ✓ should return 20 movies and a status 200 (113ms)
+      ✓ should return 20 movies and a status 200 (43ms)
     GET /api/movies/:id
       when the id is valid
-        ✓ should return the matching movie (69ms)
+        ✓ should return the matching movie (86ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (68ms)
+        ✓ should return Internal Server Error (130ms)
     GET /api/movies/tmdb/discover/page:page
       when the page is valid
-        ✓ should return the matching movies form tmdb and status code 200 (67ms)
+        ✓ should return the matching movies form tmdb and status code 200 (98ms)
       when the page is invalid
         ✓ should return the NOT found message
     GET /api/movies/tmdb/upcoming/page:page
       when the page is valid
-        ✓ should return the matching movies form tmdb and status code 200 (99ms)
+        ✓ should return the matching movies form tmdb and status code 200 (164ms)
       when the page is invalid
         ✓ should return the NOT found message
     GET /api/movies/tmdb/top_rated/page:page
       when the page is valid
-        ✓ should return the matching movies form tmdb and status code 200 (68ms)
+        ✓ should return the matching movies form tmdb and status code 200 (115ms)
       when the page is invalid
         ✓ should return the NOT found message
     GET /api/movies/tmdb/movie/:id
       when the id is valid
-        ✓ should return the matching movie details from tmdb and status code 200 (68ms)
+        ✓ should return the matching movie details from tmdb and status code 200 (92ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (68ms)
+        ✓ should return Internal Server Error (114ms)
     GET /api/movies/tmdb/movie/:id/images
       when the id is valid
-        ✓ should return the matching movie images from tmdb and status code 200 (67ms)
+        ✓ should return the matching movie images from tmdb and status code 200 (107ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (70ms)
+        ✓ should return Internal Server Error (89ms)
     GET /api/movies/tmdb/movie/:id/reviews
       when the id is valid
-        ✓ should return the matching movie reviews from tmdb and status code 200 (68ms)
+        ✓ should return the matching movie reviews from tmdb and status code 200 (93ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (68ms)
+        ✓ should return Internal Server Error (98ms)
     GET /api/movies/tmdb/movie/:id/movie_credits
       when the id is valid
-        ✓ should return the matching movie credits from tmdb and status code 200 (71ms)
+        ✓ should return the matching movie credits from tmdb and status code 200 (93ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (70ms)
+        ✓ should return Internal Server Error (109ms)
+
   Genres endpoint
     GET /api/genres
-      ✓ should return 4 genres from db and status code 200 (102ms)
+      ✓ should return 4 genres from db and status code 200 (41ms)
     GET /api/genres/tmdb 
       ✓ should return a list of genres from tmdb and a status 200
+
   People endpoint
     GET /api/people
-      ✓ should return 20 people and status code 200 (223ms)
+      ✓ should return 20 people and status code 200 (68ms)
     GET /api/people/:id
       when the id is valid
-        ✓ should an object of matching people and a status 200 (103ms)
+        ✓ should an object of matching people and a status 200
         when the id is invalid
-          ✓ should return the NOT found message (101ms)
+          ✓ should return the NOT found message
     GET /api/people/tmdb/popular/page:page
       when the page is valid
-        ✓ should return the matching people list form tmdb and status code 200 (70ms)
+        ✓ should return the matching people list form tmdb and status code 200 (109ms)
       when the page is invalid
         ✓ should return the NOT found message
     GET /api/people/tmdb/person/:id
       when the id is valid
-        ✓ should return the matching person details from tmdb and status code 200 (68ms)
+        ✓ should return the matching person details from tmdb and status code 200 (108ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (66ms)
+        ✓ should return Internal Server Error (101ms)
     GET /api/people/tmdb/person/:id/images
       when the id is valid
-        ✓ should return the matching person images from tmdb and status code 200 (73ms)
+        ✓ should return the matching person images from tmdb and status code 200 (98ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (67ms)
+        ✓ should return Internal Server Error (95ms)
     GET /api/people/tmdb/person/:id/combined_credits
       when the id is valid
-        ✓ should return the matching person combined credits from tmdb and status code 200 (70ms)
+        ✓ should return the matching person combined credits from tmdb and status code 200 (109ms)
       when the id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (66ms)
+        ✓ should return Internal Server Error (90ms)
+
   Reviews endpoint
     GET /api/reviews/movie/:id/reviews
       when movie id is valid
-        ✓ should a object contains a list of the reviews of the movie and a status 200 (172ms)
+        ✓ should a object contains a list of the reviews of the movie and a status 200 (129ms)
       when movie id is invalid
         ✓ should return the NOT found message
-        ✓ should return Internal Server Error (166ms)
+        ✓ should return Internal Server Error (109ms)
     POST /api/reviews/movie/:id/reviews/:username
       when movie id is valid
         when the content is not empty
@@ -174,8 +178,46 @@ database connected to movies on ac-b8zbtwm-shard-00-00.nmgcwjf.mongodb.net
           ✓ should return error messagea and status code 403
       when movie id is invalid
         ✓ should return the NOT found message
-  54 passing (32s)  
-  
+
+
+  54 passing (18s)
+
+--------------------------|---------|----------|---------|---------|--------------------------------
+File                      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
+--------------------------|---------|----------|---------|---------|--------------------------------
+All files                 |   84.73 |    77.25 |   84.43 |   85.05 |                                
+ assignment2              |   97.14 |       50 |     100 |   97.14 |                                
+  index.js                |   97.14 |       50 |     100 |   97.14 | 21                             
+ assignment2/api          |   88.23 |    79.16 |   86.11 |   88.23 |                                
+  tmdb-api.js             |   88.23 |    79.16 |   86.11 |   88.23 | 8,13,22,27,36,41,66,71,109,114 
+ assignment2/api/genres   |     100 |      100 |     100 |     100 |                                
+  genreModel.js           |     100 |      100 |     100 |     100 |                                
+  genresData.js           |     100 |      100 |     100 |     100 |                                
+  index.js                |     100 |      100 |     100 |     100 |                                
+ assignment2/api/movies   |   89.17 |    87.14 |   94.87 |   83.49 |                                
+  index.js                |   88.11 |    87.14 |   94.73 |   81.11 | 28,35-45,55-69                 
+  movieModel.js           |     100 |      100 |     100 |     100 |                                
+  moviesData.js           |     100 |      100 |     100 |     100 |                                
+ assignment2/api/people   |   96.73 |    95.12 |     100 |   98.18 |                                
+  index.js                |   96.47 |    95.12 |     100 |   97.95 | 16                             
+  peopleModel.js          |     100 |      100 |     100 |     100 |                                
+ assignment2/api/reviews  |   96.22 |    94.11 |   88.88 |   95.23 |                                
+  index.js                |   97.82 |    94.11 |     100 |   97.22 | 52                             
+  reviewModel.js          |   85.71 |      100 |       0 |   83.33 | 16                             
+ assignment2/api/users    |   86.46 |    77.61 |   90.32 |   86.51 |                                
+  index.js                |   86.11 |    78.94 |      88 |   86.15 | 84,90,104,153-161              
+  userModel.js            |      88 |       70 |     100 |    87.5 | 19,30,34                       
+ assignment2/authenticate |   66.66 |        0 |      25 |   73.68 |                                
+  index.js                |   66.66 |        0 |      25 |   73.68 | 15-20                          
+ assignment2/db           |   81.81 |      100 |   33.33 |   81.81 |                                
+  index.js                |   81.81 |      100 |   33.33 |   81.81 | 11,14                          
+ assignment2/seedData     |    32.3 |        5 |       0 |   40.47 |                                
+  genres.js               |     100 |      100 |     100 |     100 |                                
+  index.js                |   16.98 |        5 |       0 |   26.47 | 12-46,49-51                    
+  movies.js               |     100 |      100 |     100 |     100 |                                
+  people.js               |     100 |      100 |     100 |     100 |                                
+  users.js                |     100 |      100 |     100 |     100 |                                
+--------------------------|---------|----------|---------|---------|--------------------------------
 ~~~
 
 ## Independent Learning (if relevant)
