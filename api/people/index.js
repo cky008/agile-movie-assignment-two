@@ -1,10 +1,30 @@
-import e from 'express';
 import express from 'express';
 import asyncHandler from 'express-async-handler';
 import { getPersonPopular, getPerson, getPersonImages, getPersonCombinedCredit } from '../tmdb-api';
+import peopleModel from './peopleModel';
 
 const router = express.Router();
 let Regex = /^[1-9][0-9]*$/;
+
+router.get('/', asyncHandler(async (req, res) => {
+    const people = await peopleModel.find();
+    res.status(200).json(people);
+}));
+
+router.get('/:id', asyncHandler(async (req, res) => {
+    if (!Regex.test(req.params.id)) {
+        res.status(403).json({ message: 'Invalid person id.', status_code: 403 });
+    }
+    else {
+        const id = parseInt(req.params.id);
+        const person = await peopleModel.findByPeopleDBId(id);
+        if (person) {
+            res.status(200).json(person);
+        } else {
+            res.status(404).json({ message: 'The resource you requested could not be found.', status_code: 404 });
+        }
+    }
+}));
 
 /**
  * @swagger

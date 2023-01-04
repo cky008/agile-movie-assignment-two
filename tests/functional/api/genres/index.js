@@ -38,7 +38,7 @@ describe("Genres endpoint", () => {
     api.close(); // Release PORT 8080
   });
   describe("GET /api/genres", () => {
-    it("should return 4 genres from db and a status 200", (done) => {
+    it("should return 4 genres from db and status code 200", (done) => {
       request(api)
         .get("/api/genres")
         .set("Accept", "application/json")
