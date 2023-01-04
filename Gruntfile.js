@@ -9,7 +9,7 @@ module.exports = function(grunt) {
             // coveralls.io is down). Optional, defaults to false.
             force: false
           },
-  
+
           your_target: {
             // LCOV coverage file (can be string, glob or array)
             src: 'coverage/*.info',
@@ -17,9 +17,9 @@ module.exports = function(grunt) {
               // Any options for just this target
             }
           },
-  
+
         },
       });  
     grunt.loadNpmTasks('grunt-coveralls');
-  
+
   };
